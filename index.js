@@ -12,13 +12,27 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/skyofthoughts')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
+// Validate environment variables
+if (!process.env.MONGODB_URI) {
+    console.error('MONGODB_URI is not defined in .env file');
     process.exit(1);
-  });
+}
+
+// MongoDB Connection
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.error('MongoDB connection error:', error.message);
+        process.exit(1);
+    }
+};
+
+connectDB();
 
 // Routes
 // Get all stars
