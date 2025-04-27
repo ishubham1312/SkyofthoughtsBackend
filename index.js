@@ -5,6 +5,7 @@ require('dotenv').config();
 const Star = require('./models/Star');
 const errorHandler = require('./middleware/errorHandler');
 const validateStar = require('./middleware/validateStar');
+const checkInappropriateWords = require('./middleware/checkInappropriateWords');
 
 const app = express();
 
@@ -50,7 +51,7 @@ app.get('/api/stars', async (req, res, next) => {
 });
 
 // Save a new star
-app.post('/api/stars', validateStar, async (req, res, next) => {
+app.post('/api/stars', validateStar, checkInappropriateWords, async (req, res, next) => {
     try {
         const { x, y, thought } = req.body;
         const newStar = new Star({
