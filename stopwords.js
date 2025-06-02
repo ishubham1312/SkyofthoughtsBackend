@@ -1,22 +1,6 @@
 // Array of inappropriate words to filter
 const stopwords = [
-    "fuck",
-    "shit",
-    "bitch",
-    "nigga",
-    "nigger",
-    "asshole",
-    "bastard",
-    "cunt",
-    "damn",
-    "motherfucker",
-    "whore",
-    "slut",
-    "cock",
-    "penis",
-    "vagina",
-    "chut",
-    
+      
     // Mohinis variations
     "mohinis", "mohinees", "mohiniss", "mohineez", "mohiniz", "mohiness",
     "mo-hi-nis", "mo hi nis", "mohinisss", "mohini's",
